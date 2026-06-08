@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реєстрація | FlashLearn</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-card">
+            <h2>Створення акаунта</h2>
+
+            <form method="POST" action="/register">
+                <input type="text" name="username" placeholder="Ім'я користувача" required>
+                <input type="email" name="email" placeholder="Електронна пошта" required>
+                <input type="password" name="password" placeholder="Пароль" required>
+                <button type="submit" class="btn primary">Зареєструватися</button>
+            </form>
+
+            <p style="text-align:center; margin-top:18px; color:#6e5f8d;">
+                Вже є акаунт?
+                <a href="/login" style="color:#8b5cf6; text-decoration:none; font-weight:700;">Увійти</a>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">FlashLearn</div>
+                <div class="footer-text">
+                    Створи акаунт і почни вивчати англійську у власному темпі.
+                </div>
+            </div>
+
+            <nav class="footer-nav">
+                <a href="/">Головна</a>
+                <a href="/login">Вхід</a>
+                <a href="/register">Реєстрація</a>
+            </nav>
+
+            <div class="footer-copy">
+                © 2026 FlashLearn. Усі права захищені.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вхід | FlashLearn</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=20">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span>FlashLearn</span>
+            </a>
+
+            <nav class="nav">
+                <a href="/">Головна</a>
+                <a href="/login" class="active-link">Вхід</a>
+                <a href="/register">Реєстрація</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="auth-hero-page">
+        <div class="auth-hero-left">
+            <div class="premium-chip">✨ FlashLearn Platform</div>
+
+            <h1>
+                Вивчай англійську <br>
+                красиво та легко
+            </h1>
+
+            <p>
+                Картки, словник та інтерактивні тренування
+                в одному сучасному просторі.
+            </p>
+
+            <div class="auth-mini-cards">
+                <div class="auth-mini-card">📚 5000+ слів</div>
+                <div class="auth-mini-card">⚡ Швидкі тренування</div>
+                <div class="auth-mini-card">🧠 Розумне повторення</div>
+            </div>
+
+            <img src="/static/images/cat.png" class="auth-hero-image" alt="Cute Cat">
+        </div>
+
+        <div class="auth-card">
+            <h2>Вхід до акаунта</h2>
+
+            <form method="POST" action="/login">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Пароль" required>
+
+                <button type="submit" class="btn primary">
+                    Увійти
+                </button>
+            </form>
+
+            <p class="auth-switch">
+                Ще немає акаунта?
+                <a href="/register">Зареєструватися</a>
+            </p>
+        </div>
+    </main>
+</body>
+</html>

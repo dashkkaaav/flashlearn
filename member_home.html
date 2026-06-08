@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Головна | FlashLearn</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {{header}}
+
+    <main class="member-home-page">
+        <section class="member-home-hero">
+            <div class="member-home-left">
+                <div class="premium-chip">👋 Особистий простір користувача</div>
+                <h1>Вітаю, {{username}}!</h1>
+                <p class="member-home-text">
+                    Це твоя головна сторінка в FlashLearn. Тут зібрані всі основні розділи,
+                    щоб ти могла швидко перейти до карток, словника, тренувань та профілю.
+                </p>
+
+                <div class="member-home-actions">
+                    <a href="/cards" class="btn primary">Перейти до карток</a>
+                    <a href="/training" class="btn secondary">Почати тренування</a>
+                </div>
+            </div>
+
+            <div class="member-home-right">
+                <div class="member-route-card">
+                    <div class="section-badge">Швидкий старт</div>
+                    <h3>З чого почати?</h3>
+
+                    <div class="member-route-step">
+                        <span>01</span>
+                        <p>Створи або відкрий свій набір у розділі <strong>Картки</strong></p>
+                    </div>
+
+                    <div class="member-route-step">
+                        <span>02</span>
+                        <p>Переглянь готові теми в розділі <strong>Словник</strong></p>
+                    </div>
+
+                    <div class="member-route-step">
+                        <span>03</span>
+                        <p>Закріпи слова через <strong>Тренування</strong></p>
+                    </div>
+
+                    <div class="member-route-step">
+                        <span>04</span>
+                        <p>Онови дані та переглянь простір у <strong>Профілі</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {{footer}}
+</body>
+</html>
