@@ -33,8 +33,8 @@ from database import (
 )
 from auth import hash_password, verify_password, generate_session_token
 
-HOST = "127.0.0.1"
-PORT = 8000
+HOST = "0.0.0.0"
+PORT = int(os.environ.get("PORT", 8000))
 
 
 class MyHandler(BaseHTTPRequestHandler):
