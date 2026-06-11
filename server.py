@@ -2537,8 +2537,8 @@ renderCard();
         self.wfile.write(content)
 
     def serve_static_file(self, filepath):
-    if not os.path.exists(filepath):
-        filename = os.path.basename(filepath)
+        if not os.path.exists(filepath):
+            filename = os.path.basename(filepath)
 
         if os.path.exists(filename):
             filepath = filename
