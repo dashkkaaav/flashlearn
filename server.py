@@ -623,7 +623,7 @@ class MyHandler(BaseHTTPRequestHandler):
             self.send_html(page_html)
             return
 
-        self.serve_file("templates/index.html")
+        self.serve_file("index.html")
 
     def handle_register(self):
         form_data = self.get_form_data()
