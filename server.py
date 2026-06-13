@@ -232,7 +232,7 @@ class MyHandler(BaseHTTPRequestHandler):
             <title>Редагувати набір | FlashLearn</title>
             <link rel="stylesheet" href="/static/css/style.css">
         </head>
-        <body class="{user['theme']}-theme">
+         <body>
             <header class="header">
                 <div class="container">
                     <div class="logo">
