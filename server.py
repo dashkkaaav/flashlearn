@@ -2538,36 +2538,30 @@ renderCard();
 
     def serve_static_file(self, filepath):
         if not os.path.exists(filepath):
-            filename = os.path.basename(filepath)
-
-        if os.path.exists(filename):
-            filepath = filename
-        else:
             self.send_error(404, "Static file not found")
             return
 
-    content_type = "text/plain"
+        content_type = "text/plain"
+        if filepath.endswith(".css"):
+            content_type = "text/css"
+        elif filepath.endswith(".js"):
+            content_type = "application/javascript"
+        elif filepath.endswith(".png"):
+            content_type = "image/png"
+        elif filepath.endswith(".jpg") or filepath.endswith(".jpeg"):
+            content_type = "image/jpeg"
+        elif filepath.endswith(".svg"):
+            content_type = "image/svg+xml"
+        elif filepath.endswith(".webp"):
+            content_type = "image/webp"
 
-    if filepath.endswith(".css"):
-        content_type = "text/css"
-    elif filepath.endswith(".js"):
-        content_type = "application/javascript"
-    elif filepath.endswith(".png"):
-        content_type = "image/png"
-    elif filepath.endswith(".jpg") or filepath.endswith(".jpeg"):
-        content_type = "image/jpeg"
-    elif filepath.endswith(".svg"):
-        content_type = "image/svg+xml"
-    elif filepath.endswith(".webp"):
-        content_type = "image/webp"
+        with open(filepath, "rb") as file:
+            content = file.read()
 
-    with open(filepath, "rb") as file:
-        content = file.read()
-
-    self.send_response(200)
-    self.send_header("Content-type", content_type)
-    self.end_headers()
-    self.wfile.write(content)
+        self.send_response(200)
+        self.send_header("Content-type", content_type)
+        self.end_headers()
+        self.wfile.write(content)
 
     def send_html_message(self, title, message, is_guest=False, extra_html=""):
         page_html = f"""
@@ -2579,7 +2573,7 @@ renderCard();
             <title>{title}</title>
             <link rel="stylesheet" href="/static/css/style.css">
         </head>
-        <body class="{user['theme']}-theme">
+        <body>
             <div class="auth-page">
                 <div class="auth-card">
                     <h2>{title}</h2>
