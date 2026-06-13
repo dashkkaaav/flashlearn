@@ -2541,8 +2541,13 @@ renderCard();
 
     def serve_static_file(self, filepath):
         base_dir = os.path.dirname(os.path.abspath(__file__))
+        
         full_path = os.path.join(base_dir, filepath)
-
+        
+        if not os.path.exists(full_path):
+            filename = os.path.basename(filepath)
+            full_path = os.path.join(base_dir, filename)
+        
         if not os.path.exists(full_path):
             self.send_error(404, "Static file not found")
             return
