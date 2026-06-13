@@ -45,9 +45,9 @@ class MyHandler(BaseHTTPRequestHandler):
         if path == "/":
             self.handle_home()
         elif path == "/login":
-            self.serve_file("templates/login.html")
+            self.serve_file("login.html")
         elif path == "/register":
-            self.serve_file("templates/register.html")
+            self.serve_file("register.html")
         elif path == "/profile":
             self.handle_profile()
         elif path == "/logout":
