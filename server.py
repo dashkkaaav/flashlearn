@@ -2524,50 +2524,50 @@ renderCard();
         return parse_qs(raw_data)
 
     def serve_file(self, filepath):
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    full_path = os.path.join(base_dir, filepath)
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        full_path = os.path.join(base_dir, filepath)
 
-    if not os.path.exists(full_path):
-        self.send_error(404, "File not found")
-        return
+        if not os.path.exists(full_path):
+            self.send_error(404, "File not found")
+            return
 
-    with open(full_path, "rb") as file:
-        content = file.read()
+        with open(full_path, "rb") as file:
+            content = file.read()
 
-    self.send_response(200)
-    self.send_header("Content-type", "text/html; charset=utf-8")
-    self.end_headers()
-    self.wfile.write(content)
+        self.send_response(200)
+        self.send_header("Content-type", "text/html; charset=utf-8")
+        self.end_headers()
+        self.wfile.write(content)
 
     def serve_static_file(self, filepath):
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    full_path = os.path.join(base_dir, filepath)
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        full_path = os.path.join(base_dir, filepath)
 
-    if not os.path.exists(full_path):
-        self.send_error(404, "Static file not found")
-        return
+        if not os.path.exists(full_path):
+            self.send_error(404, "Static file not found")
+            return
 
-    content_type = "text/plain"
-    if filepath.endswith(".css"):
-        content_type = "text/css"
-    elif filepath.endswith(".js"):
-        content_type = "application/javascript"
-    elif filepath.endswith(".png"):
-        content_type = "image/png"
-    elif filepath.endswith(".jpg") or filepath.endswith(".jpeg"):
-        content_type = "image/jpeg"
-    elif filepath.endswith(".svg"):
-        content_type = "image/svg+xml"
-    elif filepath.endswith(".webp"):
-        content_type = "image/webp"
+        content_type = "text/plain"
+        if filepath.endswith(".css"):
+            content_type = "text/css"
+        elif filepath.endswith(".js"):
+            content_type = "application/javascript"
+        elif filepath.endswith(".png"):
+            content_type = "image/png"
+        elif filepath.endswith(".jpg") or filepath.endswith(".jpeg"):
+            content_type = "image/jpeg"
+        elif filepath.endswith(".svg"):
+            content_type = "image/svg+xml"
+        elif filepath.endswith(".webp"):
+            content_type = "image/webp"
 
-    with open(full_path, "rb") as file:
-        content = file.read()
+        with open(full_path, "rb") as file:
+            content = file.read()
 
-    self.send_response(200)
-    self.send_header("Content-type", content_type)
-    self.end_headers()
-    self.wfile.write(content)
+        self.send_response(200)
+        self.send_header("Content-type", content_type)
+        self.end_headers()
+        self.wfile.write(content)
 
     def send_html_message(self, title, message, is_guest=False, extra_html=""):
         page_html = f"""
