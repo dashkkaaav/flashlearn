@@ -882,6 +882,23 @@ class MyHandler(BaseHTTPRequestHandler):
         </button>
     </form>
 </section>
+                <section class="profile-edit-card">
+                    <div class="section-badge">Редагування профілю</div>
+                    <h2>Оновити профіль</h2>
+
+                    <form method="POST" action="/profile/update" enctype="multipart/form-data" class="profile-edit-form">
+                        <input type="text" name="username" value="{username}" placeholder="Ім'я користувача" required>
+
+                        <label class="profile-upload-label">
+                            <span>Обрати фото профілю</span>
+                            <input type="file" name="avatar" accept="image/*">
+                        </label>
+
+                        <textarea name="bio" placeholder="Коротко про себе">{bio_raw or ""}</textarea>
+
+                        <button type="submit" class="btn primary">Зберегти зміни</button>
+                    </form>
+                </section>
                 <section class="profile-sections-grid">
                     <div class="profile-section-card">
                         <div class="section-badge">Активність</div>
