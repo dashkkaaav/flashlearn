@@ -1425,15 +1425,15 @@ class MyHandler(BaseHTTPRequestHandler):
         self.redirect(f"/cards/{deck_id}")
 
     def load_dictionary_data(self):
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        dictionary_path = os.path.join(base_dir, "data", "dictionary.json")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    dictionary_path = os.path.join(base_dir, "dictionary.json")
 
-        if not os.path.exists(dictionary_path):
-            print("DICTIONARY FILE NOT FOUND:", dictionary_path)
-            return {"categories": []}
+    if not os.path.exists(dictionary_path):
+        print("DICTIONARY FILE NOT FOUND:", dictionary_path)
+        return {"categories": []}
 
-        with open(dictionary_path, "r", encoding="utf-8") as file:
-            return json.load(file)
+    with open(dictionary_path, "r", encoding="utf-8") as file:
+        return json.load(file)
 
     def handle_dictionary_page(self):
         user = self.get_current_user()
