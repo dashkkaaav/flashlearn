@@ -2804,3 +2804,11 @@ body.dark-theme .footer-badge {
 .footer-logo span {
     color: #8b5cf6 !important;
 }
+.flip-card-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin: 10px auto;
+    display: block;
+}
