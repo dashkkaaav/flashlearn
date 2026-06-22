@@ -2246,51 +2246,67 @@ class MyHandler(BaseHTTPRequestHandler):
     }}
 
     function checkAnswer() {{
-        if (checkedIndexes.has(currentIndex)) {{
-            return;
-        }}
-
-        const item = trainingCards[currentIndex];
-        const correctAnswer = normalizeText(item.back);
-
-        let userAnswer = "";
-
-        if (mode === "choice") {{
-            userAnswer = normalizeText(selectedChoice);
-
-            if (!userAnswer) {{
-                resultBlock.textContent = "Обери один варіант відповіді.";
-                resultBlock.className = "training-result training-result-lux training-result-warning";
-                return;
-            }}
-        }} else {{
-            userAnswer = normalizeText(answerInput.value);
-
-            if (!userAnswer) {{
-                resultBlock.textContent = "Спочатку введи відповідь.";
-                resultBlock.className = "training-result training-result-lux training-result-warning";
-                return;
-            }}
-        }}
-
-        checkedIndexes.add(currentIndex);
-
-        if (userAnswer === correctAnswer) {{
-            resultBlock.textContent = "✅ Правильно";
-            resultBlock.className = "training-result training-result-lux training-result-success";
-            correctCount++;
-        }} else {{
-            resultBlock.textContent = "❌ Неправильно";
-            resultBlock.className = "training-result training-result-lux training-result-error";
-            wrongCount++;
-            mistakeCards.push(item);
-        }}
-
-        correctBlock.style.display = "flex";
-        nextBtn.disabled = false;
-        nextBtn.classList.remove("training-btn-disabled");
+    if (checkedIndexes.has(currentIndex)) {{
+        return;
     }}
 
+    const item = trainingCards[currentIndex];
+    const correctAnswer = normalizeText(item.back);
+
+    let userAnswer = "";
+    let shownUserAnswer = "";
+
+    if (mode === "choice") {{
+        userAnswer = normalizeText(selectedChoice);
+        shownUserAnswer = selectedChoice;
+
+        if (!userAnswer) {{
+            resultBlock.innerHTML = "<div class='training-result-card warning'>⚠️ Обери один варіант відповіді</div>";
+            resultBlock.className = "training-result training-result-lux";
+            return;
+        }}
+    }} else {{
+        userAnswer = normalizeText(answerInput.value);
+        shownUserAnswer = answerInput.value;
+
+        if (!userAnswer) {{
+            resultBlock.innerHTML = "<div class='training-result-card warning'>✍️ Спочатку введи відповідь</div>";
+            resultBlock.className = "training-result training-result-lux";
+            return;
+        }}
+    }}
+
+    checkedIndexes.add(currentIndex);
+
+    if (userAnswer === correctAnswer) {{
+        resultBlock.innerHTML = `
+            <div class="training-result-card success">
+                <div class="training-result-icon">✅</div>
+                <div>
+                    <h3>Правильно!</h3>
+                    <p>Твоя відповідь: <strong>${{shownUserAnswer}}</strong></p>
+                </div>
+            </div>
+        `;
+        correctCount++;
+    }} else {{
+        resultBlock.innerHTML = `
+            <div class="training-result-card error">
+                <div class="training-result-icon">❌</div>
+                <div>
+                    <h3>Неправильно</h3>
+                    <p>Твоя відповідь: <strong>${{shownUserAnswer}}</strong></p>
+                </div>
+            </div>
+        `;
+        wrongCount++;
+        mistakeCards.push(item);
+    }}
+
+    correctBlock.style.display = "flex";
+    nextBtn.disabled = false;
+    nextBtn.classList.remove("training-btn-disabled");
+}}
     function goNext() {{
         if (currentIndex < trainingCards.length - 1) {{
             currentIndex++;
