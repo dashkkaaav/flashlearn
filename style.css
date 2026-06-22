@@ -2812,3 +2812,122 @@ body.dark-theme .footer-badge {
     margin: 10px auto;
     display: block;
 }
+/* BEAUTIFUL TRAINING ANSWER RESULT */
+
+.training-result-lux {
+    width: 100%;
+    max-width: 720px;
+    margin: 22px auto 0;
+}
+
+.training-result-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 26px;
+    border-radius: 28px;
+    text-align: left;
+    border: 2px solid transparent;
+    box-shadow: 0 18px 38px rgba(155, 109, 255, 0.13);
+}
+
+.training-result-card h3 {
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.training-result-card p {
+    font-size: 17px;
+    color: #6f6688;
+}
+
+.training-result-icon {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 20px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.training-result-card.success {
+    background: linear-gradient(135deg, #dcfce7, #f0fdf4);
+    border-color: #bbf7d0;
+}
+
+.training-result-card.success h3 {
+    color: #15803d;
+}
+
+.training-result-card.error {
+    background: linear-gradient(135deg, #ffe4e6, #fff1f2);
+    border-color: #fecdd3;
+}
+
+.training-result-card.error h3 {
+    color: #dc2626;
+}
+
+.training-result-card.warning {
+    justify-content: center;
+    background: linear-gradient(135deg, #fff7ed, #fffbeb);
+    border-color: #fed7aa;
+    color: #c2410c;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.training-correct-block-lux {
+    width: 100%;
+    max-width: 720px;
+    margin: 24px auto 0 !important;
+    padding: 28px 30px !important;
+    border-radius: 30px !important;
+    background: linear-gradient(135deg, #eefdf5, #f7fff9) !important;
+    border: 2px solid #bbf7d0 !important;
+    box-shadow: 0 18px 38px rgba(34, 197, 94, 0.13);
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.training-lux-answer-head {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.training-sticker {
+    width: 70px;
+    height: 70px;
+    border-radius: 24px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    box-shadow: 0 10px 24px rgba(34, 197, 94, 0.12);
+}
+
+.training-lux-answer-label {
+    color: #15803d;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+#training-back-text {
+    font-size: 34px;
+    color: #25223b;
+    margin-top: 4px;
+}
+
+#training-hint {
+    max-width: 320px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #6f6688;
+    text-align: right;
+}
