@@ -503,6 +503,12 @@ class MyHandler(BaseHTTPRequestHandler):
 
         if user:
             username = html.escape(user["username"] or "")
+            summary = get_user_training_summary(user["id"])
+total_words = summary["total_words"] if summary else 0
+
+progress_goal = 300
+progress_percent = min(round((total_words / progress_goal) * 100), 100)
+            
 
             page_html = f"""
             <!DOCTYPE html>
@@ -560,13 +566,13 @@ class MyHandler(BaseHTTPRequestHandler):
 
                     <section class="cute-progress-row">
     <div class="cute-progress-card pastel-purple">
-        <h3>Мій прогрес</h3>
-        <strong>204/300</strong>
-        <p>уроків завершено</p>
-        <div class="cute-progress-line">
-            <div></div>
-        </div>
+    <h3>Мій прогрес</h3>
+    <strong>{total_words}/{progress_goal}</strong>
+    <p>слів пройдено</p>
+    <div class="cute-progress-line">
+        <div style="width: {progress_percent}%;"></div>
     </div>
+</div>
 
     <div class="cute-progress-card pastel-green">
         <h3>Словник</h3>
