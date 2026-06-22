@@ -504,10 +504,10 @@ class MyHandler(BaseHTTPRequestHandler):
         if user:
             username = html.escape(user["username"] or "")
             summary = get_user_training_summary(user["id"])
-total_words = summary["total_words"] if summary else 0
+            total_words = summary["total_words"] if summary else 0
 
-progress_goal = 300
-progress_percent = min(round((total_words / progress_goal) * 100), 100)
+            progress_goal = 300
+            progress_percent = min(round((total_words / progress_goal) * 100), 100)
             
 
             page_html = f"""
