@@ -330,7 +330,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
         word = html.escape(card["word"] or "")
         translation = html.escape(card["translation"] or "")
-        example = html.escape(card["example"] or "")
+        transcription = html.escape(card["transcription"] or "") # <--- Змінили
         image_url = html.escape(card["image_url"] or "")
 
         page_html = f"""
@@ -368,7 +368,7 @@ class MyHandler(BaseHTTPRequestHandler):
                         <input type="text" name="word" value="{word}" placeholder="Англійське слово" required>
                         <input type="text" name="translation" value="{translation}" placeholder="Переклад" required>
                         <input type="text" name="image_url" value="{image_url}" placeholder="Посилання на картинку">
-                        <textarea name="example" placeholder="Приклад речення">{example}</textarea>
+                        <input type="text" name="transcription" value="{transcription}" placeholder="Транскрипція [укр]">
 
                         <button type="submit" class="btn primary">Зберегти зміни</button>
                         <a href="/cards/{deck_id}" class="btn secondary">Скасувати</a>
@@ -400,13 +400,15 @@ class MyHandler(BaseHTTPRequestHandler):
         word = form_data.get("word", [""])[0].strip()
         translation = form_data.get("translation", [""])[0].strip()
         image_url = form_data.get("image_url", [""])[0].strip()
-        example = form_data.get("example", [""])[0].strip()
+        transcription = form_data.get("transcription", [""])[0].strip() # <--- Змінили
 
         if not word or not translation:
             self.send_html_message("Помилка", "Слово і переклад є обов’язковими.")
             return
+    
 
-        success = update_card(card_id, deck_id, user["id"], word, translation, example, image_url)
+
+        success = update_card(card_id, deck_id, user["id"], word, translation, transcription, image_url)
 
         if not success:
             self.send_html_message("Помилка", "Не вдалося оновити картку.")
