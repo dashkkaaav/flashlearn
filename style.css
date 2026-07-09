@@ -2931,3 +2931,15 @@ body.dark-theme .footer-badge {
     color: #6f6688;
     text-align: right;
 }
+
+/* СТИЛЬ ТРАНСКРИПЦІЇ НА КАРТКАХ СЛОВНИКА */
+.dictionary-transcription,
+.card-transcription {
+    font-size: 18px;             /* Оптимальний розмір, щоб читалося під великим словом */
+    color: #8d63df;             /* Лавандово-фіолетовий колір із вашої палітри (--purple-dark) */
+    font-weight: 700;           /* Робимо її напівжирною */
+    margin-top: 8px;            /* Відступ зверху від англійського слова */
+    margin-bottom: 4px;         /* Відступ знизу */
+    font-family: Arial, sans-serif;
+    letter-spacing: 0.5px;      /* Щоб укр літери в дужках [чиіз] не зливалися */
+}
