@@ -63,12 +63,20 @@ def create_tables():
             deck_id INTEGER NOT NULL,
             word TEXT NOT NULL,
             translation TEXT NOT NULL,
-            example TEXT,
+            transcription TEXT,
             image_url TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (deck_id) REFERENCES decks(id)
         )
     """)
+
+    cursor.execute("PRAGMA table_info(cards)")
+    card_columns = [column["name"] for column in cursor.fetchall()]
+    if "transcription" not in card_columns:
+        cursor.execute("""
+            ALTER TABLE cards
+            ADD COLUMN transcription TEXT DEFAULT ''
+        """)
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS training_results (
@@ -243,14 +251,14 @@ def count_user_decks(user_id):
     return result["total"] if result else 0
 
 
-def create_card(deck_id, word, translation, example, image_url):
+def create_card(deck_id, word, translation, transcription, image_url):
     connection = get_connection()
     cursor = connection.cursor()
 
     cursor.execute("""
-        INSERT INTO cards (deck_id, word, translation, example, image_url)
+        INSERT INTO cards (deck_id, word, translation, transcription, image_url)
         VALUES (?, ?, ?, ?, ?)
-    """, (deck_id, word, translation, example, image_url))
+    """, (deck_id, word, translation, transcription, image_url))
 
     connection.commit()
     connection.close()
@@ -486,19 +494,19 @@ def update_deck(deck_id, user_id, title, description):
 
     return updated > 0
 
-def update_card(card_id, deck_id, user_id, word, translation, example, image_url):
+def update_card(card_id, deck_id, user_id, word, translation, transcription, image_url):
     connection = get_connection()
     cursor = connection.cursor()
 
     cursor.execute("""
         UPDATE cards
-        SET word = ?, translation = ?, example = ?, image_url = ?
+        SET word = ?, translation = ?, transcription = ?, image_url = ?
         WHERE id = ?
         AND deck_id = ?
         AND deck_id IN (
             SELECT id FROM decks WHERE user_id = ?
         )
-    """, (word, translation, example, image_url, card_id, deck_id, user_id))
+    """, (word, translation, transcription, image_url, card_id, deck_id, user_id))
     connection.commit()
     updated = cursor.rowcount
     connection.close()
