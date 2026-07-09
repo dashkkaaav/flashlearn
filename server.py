@@ -1275,7 +1275,7 @@ class MyHandler(BaseHTTPRequestHandler):
                                 <div class="profile-badge">Українська</div>
                                 <h3>{translation}</h3>
                                 {image_html}
-                                {example_html}
+                                {transcription_html}
                             </div>
                         </div>
                     </div>
@@ -1590,11 +1590,11 @@ class MyHandler(BaseHTTPRequestHandler):
                 word = html.escape(word_item.get("word", ""))
                 translation = html.escape(word_item.get("translation", ""))
                 sticker = html.escape(word_item.get("sticker", "✨"))
-                example = html.escape(word_item.get("example", ""))
+                transcription = html.escape(word_item.get("transcription", ""))
 
-                example_html = ""
-                if example:
-                    example_html = f'<p class="dictionary-flip-example"><strong>Приклад:</strong> {example}</p>'
+                transcription_html = ""
+                if transcription:
+                    transcription_html = f'<p class="dictionary-flip-example"><strong>Транскрипція:</strong> {transcription}</p>'
 
                 words_html += f"""
                 <article class="dictionary-flip-card-item">
@@ -1611,7 +1611,7 @@ class MyHandler(BaseHTTPRequestHandler):
                                 <div class="profile-badge">Українська</div>
                                 <div class="dictionary-sticker">{sticker}</div>
                                 <h3>{translation}</h3>
-                                {example_html}
+                                {transcription_html}
                             </div>
                         </div>
                     </div>
@@ -1916,7 +1916,7 @@ class MyHandler(BaseHTTPRequestHandler):
             training_cards.append({
                 "front": word_item.get("word", ""),
                 "back": word_item.get("translation", ""),
-                "hint": word_item.get("example", ""),
+                "hint": word_item.get("transcription", ""),
                 "sticker": word_item.get("sticker", "✨")
             })
 
